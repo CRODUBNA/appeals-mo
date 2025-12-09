@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Обращения школ и ДОУ | ЦРО г. Дубны</title>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <style>
+    :root {
+      --blue: #003366;
+      --gold: #D4AF37;
+      --light: #f5f7fa;
+      --dark: #333;
+      --gray: #666;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background-color: #fff;
+    }
+
+    header {
+      background-color: var(--blue);
+      color: white;
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-weight: 600;
+      font-size: 1.8rem;
+    }
+
+    header p {
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0.8rem auto 0;
+      font-size: 1.05rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--gold);
+      color: var(--blue);
+      font-weight: 600;
+      padding: 0.9rem 2.2rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #b89e2e;
+      transform: translateY(-2px);
+    }
+
+    #form-section {
+      background-color: var(--light);
+      border-radius: 8px;
+      padding: 2rem;
+      margin-top: 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    .hint {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 0.25rem;
+    }
+
+    select, input, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    select {
+      background-color: white;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      margin: 1.2rem 0;
+    }
+
+    .checkbox-group input {
+      margin-right: 0.7rem;
+      margin-top: 0.3rem;
+      width: auto;
+    }
+
+    .checkbox-group label {
+      font-weight: normal;
+      color: var(--gray);
+    }
+
+    .checkbox-group a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .checkbox-group a:hover {
+      text-decoration: underline;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.1rem;
+      background-color: var(--blue);
+      color: white;
+    }
+
+    .submit-btn:hover {
+      background-color: #002244;
+    }
+
+    .submit-btn:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+
+    /* Модальное окно */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: 10% auto;
+      padding: 2rem;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .modal h3 {
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+
+    .modal-num {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--gold);
+      background-color: #f0f4ff;
+      padding: 0.8rem;
+      border-radius: 6px;
+      margin: 1rem 0;
+      letter-spacing: 1px;
+    }
+
+    .modal p {
+      margin-bottom: 1.5rem;
+    }
+
+    .close-btn {
+      background-color: var(--blue);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+      border-top: 1px solid #eee;
+      margin-top: 3rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5rem; }
+      .btn { padding: 0.8rem 1.5rem; font-size: 1rem; }
+      #form-section { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Центр развития образования г. Дубны</h1>
+    <p>Сбор обращений от образовательных организаций</p>
+  </header>
+
+  <div class="container">
+    <div class="hero">
+      <a href="#form-section" class="btn">Отправить обращение</a>
+    </div>
+
+    <section id="form-section">
+      <h2>Форма обращения</h2>
+      <form id="appeal-form">
+        <div class="form-group">
+          <label for="org">Организация *</label>
+          <select id="org" required>
+            <option value="" disabled selected>Выберите организацию</option>
+            <!-- Школы -->
+            <option value="Лицей №6 им. академика Г.Н. Флёрова">Лицей №6 им. академика Г.Н. Флёрова</option>
+            <option value="Гимназия №3">Гимназия №3</option>
+            <option value="Гимназия №11 (ранее &quot;Гармония&quot;)">Гимназия №11 (ранее "Гармония")</option>
+            <option value="СОШ №1 с углублённым изучением отдельных предметов">СОШ №1 с углублённым изучением отдельных предметов</option>
+            <option value="СОШ №2">СОШ №2</option>
+            <option value="СОШ №4">СОШ №4</option>
+            <option value="СОШ №5">СОШ №5</option>
+            <option value="СОШ №7">СОШ №7</option>
+            <option value="СОШ №9">СОШ №9</option>
+            <option value="СОШ №10">СОШ №10</option>
+            <option value="Лицей «Дубна» (ОИЯИ)">Лицей «Дубна» (ОИЯИ)</option>
+            <option value="ЧОУ «Абсолют»">ЧОУ «Абсолют»</option>
+            <!-- Детские сады -->
+            <option value="ДС №2 «Ромашка»">ДС №2 «Ромашка»</option>
+            <option value="ДС №3 «Незабудка»">ДС №3 «Незабудка»</option>
+            <option value="ДС №4 «Золотой ключик»">ДС №4 «Золотой ключик»</option>
+            <option value="ДС №5 «Теремок»">ДС №5 «Теремок»</option>
+            <option value="ДС №8 «Золотая рыбка»">ДС №8 «Золотая рыбка»</option>
+            <option value="ДС №9 «Улыбка»">ДС №9 «Улыбка»</option>
+            <option value="ДС №10 «Лучик»">ДС №10 «Лучик»</option>
+            <option value="ДС №11 «Звёздочка»">ДС №11 «Звёздочка»</option>
+            <option value="ДС №13 «В гостях у сказки»">ДС №13 «В гостях у сказки»</option>
+            <option value="ДС №14 «Солнышко»">ДС №14 «Солнышко»</option>
+            <option value="ДС №15 «Родничок»">ДС №15 «Родничок»</option>
+            <option value="ДС №16 «Кораблик»">ДС №16 «Кораблик»</option>
+            <option value="ДС №17 «Чебурашка»">ДС №17 «Чебурашка»</option>
+            <option value="ДС №18 «Мишутка»">ДС №18 «Мишутка»</option>
+            <option value="ДС №19 «Пчелка»">ДС №19 «Пчелка»</option>
+            <option value="ДС №20 «Ёлочка»">ДС №20 «Ёлочка»</option>
+            <option value="ДС №21 «Яблонька»">ДС №21 «Яблонька»</option>
+            <option value="ДС №22 «Орлёнок»">ДС №22 «Орлёнок»</option>
+            <option value="ДС №23 «Радуга»">ДС №23 «Радуга»</option>
+            <option value="ДС №24 «Берёзка»">ДС №24 «Берёзка»</option>
+            <option value="ДС №25 «Золотой петушок»">ДС №25 «Золотой петушок»</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="name">ФИО отправителя *</label>
+          <input type="text" id="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Электронная почта *</label>
+          <input type="email" id="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="filelink">Ссылка на файл (скриншот/документ)</label>
+          <input type="url" id="filelink" placeholder="https://...">
+          <div class="hint">
+            Загрузите файл в облако (Яндекс.Диск, Google Drive, iCloud и др.) и вставьте сюда публичную ссылку
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="problem">Описание проблемы *</label>
+          <textarea id="problem" required placeholder="Опишите суть обращения..."></textarea>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="consent" required>
+          <label for="consent">
+            Согласен на обработку персональных данных в соответствии с <a href="#" onclick="alert('Федеральный закон №152-ФЗ «О персональных данных»'); return false;">ФЗ‑152</a>
+          </label>
+        </div>
+
+        <button type="submit" class="btn submit-btn" id="submit-btn">Отправить обращение</button>
+      </form>
+    </section>
+  </div>
+
+  <div id="success-modal" class="modal">
+    <div class="modal-content">
+      <h3>✅ Обращение отправлено!</h3>
+      <p>Благодарим за обращение. Ваш запрос принят в работу.</p>
+      <div class="modal-num" id="appeal-number">MO-2025-1209-0000</div>
+      <button class="btn close-btn" onclick="closeModal()">Закрыть</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>Муниципальное бюджетное образовательное учреждение дополнительного профессионального образования<br>
+    «Центр развития образования города Дубны Московской области»</p>
+    <p>© 2025</p>
+  </footer>
+
+  <script>
+    (function() {
+      emailjs.init("Fcq_MI5-Os3Lm-6lK");
+    })();
+
+    function generateAppealNumber() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const random = Math.floor(1000 + Math.random() * 9000);
+      return `DUBNA-${year}-${month}${day}-${random}`;
+    }
+
+    function showModal(number) {
+      document.getElementById('appeal-number').textContent = number;
+      document.getElementById('success-modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('success-modal').style.display = 'none';
+    }
+
+    document.getElementById('appeal-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const org = document.getElementById('org').value;
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const filelink = document.getElementById('filelink').value.trim() || '—';
+      const problem = document.getElementById('problem').value.trim();
+
+      const appealNumber = generateAppealNumber();
+      const moscowTime = new Date().toLocaleString('ru-RU', {
+        timeZone: 'Europe/Moscow',
+        hour12: false,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+
+      const templateParams = {
+        to_email: 'kartashovs730@gmail.com',
+        org: org,
+        name: name,
+        email: email,
+        filelink: filelink,
+        problem: problem,
+        appeal_number: appealNumber,
+        datetime: moscowTime,
+        consent: document.getElementById('consent').checked ? 'Да' : 'Нет'
+      };
+
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Отправка...';
+
+      try {
+        await emailjs.send('service_1yey9tg', 'template_r4lx08c', templateParams);
+        showModal(appealNumber);
+        this.reset();
+        document.getElementById('consent').checked = false;
+        document.getElementById('org').selectedIndex = 0;
+      } catch (error) {
+        alert('Ошибка при отправке. Проверьте подключение к интернету и повторите попытку.');
+        console.error('EmailJS Error:', error);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Отправить обращение';
+      }
+    });
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('success-modal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
+  </script>
+</body>
+</html>
