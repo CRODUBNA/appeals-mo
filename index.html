@@ -361,99 +361,99 @@
     <div class="modal-content">
       <h3>✅ Обращение отправлено!</h3>
       <p>Благодарим за обращение. Ваш запрос принят в работу.</p>
-      <div class="modal-num" id="appeal-number">DUBNA-2025-1209-0000</div>
+      <div class="modal-num" id="appeal-number">DUBNA-2025-1210-0000</div>
       <button class="btn close-btn" onclick="closeModal()">Закрыть</button>
     </div>
   </div>
 
   <footer>
-    <p>Муниципальное бюджетное образовательное учреждение дополнительного профессионального образования "Центр развития образования города Дубны Московской области"</p>
+    <p>Отдел инноваций и развития образования</p>
     <p>© 2025</p>
   </footer>
 
-  <script>
-    (function() {
-      emailjs.init("Fcq_MI5-Os3Lm-6lK");
-    })();
+ <script>
+  (function() {
+    emailjs.init("bueBMT9f2Gz29LUhm"); // ✅ Новый Public Key
+  })();
 
-    function generateAppealNumber() {
-      const now = new Date();
-      const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const day = String(now.getDate()).padStart(2, '0');
-      const random = Math.floor(1000 + Math.random() * 9000);
-      return `DUBNA-${year}-${month}${day}-${random}`;
-    }
+  function generateAppealNumber() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const random = Math.floor(1000 + Math.random() * 9000);
+    return `DUBNA-${year}-${month}${day}-${random}`;
+  }
 
-    function showModal(number) {
-      document.getElementById('appeal-number').textContent = number;
-      document.getElementById('success-modal').style.display = 'flex';
-    }
+  function showModal(number) {
+    document.getElementById('appeal-number').textContent = number;
+    document.getElementById('success-modal').style.display = 'flex';
+  }
 
-    function closeModal() {
-      document.getElementById('success-modal').style.display = 'none';
-    }
+  function closeModal() {
+    document.getElementById('success-modal').style.display = 'none';
+  }
 
-    document.getElementById('appeal-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
+  document.getElementById('appeal-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-      const org = document.getElementById('org').value;
-      const address = document.getElementById('address').value;
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const filelink = document.getElementById('filelink').value.trim() || '—';
-      const problem = document.getElementById('problem').value.trim();
+    const org = document.getElementById('org').value;
+    const address = document.getElementById('address').value;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const filelink = document.getElementById('filelink').value.trim() || '—';
+    const problem = document.getElementById('problem').value.trim();
 
-      const appealNumber = generateAppealNumber();
-      const moscowTime = new Date().toLocaleString('ru-RU', {
-        timeZone: 'Europe/Moscow',
-        hour12: false,
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
-      });
-
-      const templateParams = {
-        to_email: 'kartashovs730@gmail.com',
-        org: org,
-        address: address,
-        name: name,
-        email: email,
-        filelink: filelink,
-        problem: problem,
-        appeal_number: appealNumber,
-        datetime: moscowTime,
-        consent: document.getElementById('consent').checked ? 'Да' : 'Нет'
-      };
-
-      const btn = document.getElementById('submit-btn');
-      btn.disabled = true;
-      btn.textContent = 'Отправка...';
-
-      try {
-        await emailjs.send('service_1yey9tg', 'template_r4lx08c', templateParams);
-        showModal(appealNumber);
-        this.reset();
-        document.getElementById('consent').checked = false;
-        document.getElementById('org').selectedIndex = 0;
-        document.getElementById('address').selectedIndex = 0;
-      } catch (error) {
-        alert('Ошибка при отправке. Проверьте подключение к интернету и повторите попытку.');
-        console.error('EmailJS Error:', error);
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Отправить обращение';
-      }
+    const appealNumber = generateAppealNumber();
+    const moscowTime = new Date().toLocaleString('ru-RU', {
+      timeZone: 'Europe/Moscow',
+      hour12: false,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit'
     });
 
-    window.onclick = function(event) {
-      const modal = document.getElementById('success-modal');
-      if (event.target === modal) {
-        closeModal();
-      }
+    const templateParams = {
+      to_email: 'help@uni-dubna.ru', // ✅ Новая почта
+      org: org,
+      address: address,
+      name: name,
+      email: email,
+      filelink: filelink,
+      problem: problem,
+      appeal_number: appealNumber,
+      datetime: moscowTime,
+      consent: document.getElementById('consent').checked ? 'Да' : 'Нет'
     };
-  </script>
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Отправка...';
+
+    try {
+      await emailjs.send('service_g3sdiws', 'template_4n4gqco', templateParams); // ✅ Новые ID
+      showModal(appealNumber);
+      this.reset();
+      document.getElementById('consent').checked = false;
+      document.getElementById('org').selectedIndex = 0;
+      document.getElementById('address').selectedIndex = 0;
+    } catch (error) {
+      alert('Ошибка при отправке. Проверьте подключение к интернету и повторите попытку.');
+      console.error('EmailJS Error:', error);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Отправить обращение';
+    }
+  });
+
+  window.onclick = function(event) {
+    const modal = document.getElementById('success-modal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  };
+</script>
 </body>
 </html>
